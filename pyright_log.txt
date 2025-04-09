@@ -1,5 +1,5 @@
-c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\WithParetoAnalysis.py
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\WithParetoAnalysis.py:134:68 - error: Argument of type "list[str]" cannot be assigned to parameter "columns" of type "Axes | None" in function "__init__"
+c:\Users\ADMIN\Downloads\erroranalysisparetoprinciple-main\erroranalysisparetoprinciple-main\Final_Python_File.py
+  c:\Users\ADMIN\Downloads\erroranalysisparetoprinciple-main\erroranalysisparetoprinciple-main\Final_Python_File.py:132:68 - error: Argument of type "list[str]" cannot be assigned to parameter "columns" of type "Axes | None" in function "__init__"
     Type "list[str]" is not assignable to type "Axes | None"
       "list[str]" is not assignable to "ExtensionArray"
       "list[str]" is not assignable to "ndarray[Unknown, Unknown]"
@@ -9,13 +9,10 @@ c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\WithPareto
         "index" is an incompatible type
           Type "(value: str, start: SupportsIndex = 0, stop: SupportsIndex = sys.maxsize, /) -> int" is not assignable to type "(value: Any, /, start: int = 0, stop: int = ...) -> int"
     ... (reportArgumentType)
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\WithParetoAnalysis.py:168:48 - error: "object*" is not iterable
+  c:\Users\ADMIN\Downloads\erroranalysisparetoprinciple-main\erroranalysisparetoprinciple-main\Final_Python_File.py:166:48 - error: "object*" is not iterable
     "__iter__" method not defined (reportGeneralTypeIssues)
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\WithParetoAnalysis.py:178:18 - error: "object*" is not iterable
+  c:\Users\ADMIN\Downloads\erroranalysisparetoprinciple-main\erroranalysisparetoprinciple-main\Final_Python_File.py:176:18 - error: "object*" is not iterable
     "__iter__" method not defined (reportGeneralTypeIssues)
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\WithParetoAnalysis.py:210:51 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\WithParetoAnalysis.py:211:25 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
+  c:\Users\ADMIN\Downloads\erroranalysisparetoprinciple-main\erroranalysisparetoprinciple-main\Final_Python_File.py:208:51 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
+  c:\Users\ADMIN\Downloads\erroranalysisparetoprinciple-main\erroranalysisparetoprinciple-main\Final_Python_File.py:209:25 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
 5 errors, 0 warnings, 0 informations 
-WARNING: there is a new pyright version available (v1.1.394 -> v1.1.397).
-Please install the new version or set PYRIGHT_PYTHON_FORCE_VERSION to `latest`
-
