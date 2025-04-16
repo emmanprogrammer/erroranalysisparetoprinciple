@@ -1,21 +1,6 @@
-c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_WithParetoAnalysis.py
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_WithParetoAnalysis.py:465:68 - error: Argument of type "list[str]" cannot be assigned to parameter "columns" of type "Axes | None" in function "__init__"
-    Type "list[str]" is not assignable to type "Axes | None"
-      "list[str]" is not assignable to "ExtensionArray"
-      "list[str]" is not assignable to "ndarray[Unknown, Unknown]"
-      "list[str]" is not assignable to "Index"
-      "list[str]" is not assignable to "Series"
-      "list[str]" is incompatible with protocol "SequenceNotStr[Unknown]"
-        "index" is an incompatible type
-          Type "(value: str, start: SupportsIndex = 0, stop: SupportsIndex = sys.maxsize, /) -> int" is not assignable to type "(value: Any, /, start: int = 0, stop: int = ...) -> int"
-    ... (reportArgumentType)
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_WithParetoAnalysis.py:508:48 - error: "object*" is not iterable
-    "__iter__" method not defined (reportGeneralTypeIssues)
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_WithParetoAnalysis.py:518:18 - error: "object*" is not iterable
-    "__iter__" method not defined (reportGeneralTypeIssues)
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_WithParetoAnalysis.py:550:51 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
-  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_WithParetoAnalysis.py:551:25 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
-5 errors, 0 warnings, 0 informations 
-WARNING: there is a new pyright version available (v1.1.394 -> v1.1.398).
+c:\Users\emman\Downloads\crush py (1).py
+  c:\Users\emman\Downloads\crush py (1).py:11:4 - error: Expected indented block
+1 error, 0 warnings, 0 informations 
+WARNING: there is a new pyright version available (v1.1.394 -> v1.1.399).
 Please install the new version or set PYRIGHT_PYTHON_FORCE_VERSION to `latest`
 
