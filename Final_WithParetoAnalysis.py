@@ -332,18 +332,24 @@ def select_files():
     global filess
     file_paths = filedialog.askopenfilenames(title="Select Python Files", filetypes=[("Python Files", "*.py")])
     file_names = [os.path.basename(path) for path in file_paths]  
-    selected_files_text.delete("1.0", "end")  
-    selected_files_text.insert("end", "\n".join(file_names))
+    #selected_files_text.insert("end", "\n".join(file_names))
     filess = list(file_paths)
-    show_selected_files()
+    if file_paths:
+        for file in file_paths:
+            if file not in filess:
+                filess.append(file)
+        selected_files_text.insert(ctk.END, "\n".join(file_paths) + "\n")
+        show_selected_files()
+    
 
 def show_selected_files():
-    selected_files_text.delete(1.0, ctk.END)
     if filess:
         for file in filess:
-            selected_files_text.insert(ctk.END, file + "\n")
+            # Check if the file is already in the selected list, if not, add it
+            if file not in selected_files_text.get(1.0, ctk.END):
+                selected_files_text.insert(ctk.END, file + "\n")
     else:
-        selected_files_text.insert(ctk.END, "No files selected.")
+        selected_files_text.insert(ctk.END, "No files selected.\n")
 
 def smooth_increment(progress_bar, target_value, step=1, delay=0.01):
     """
@@ -364,6 +370,9 @@ def smooth_increment(progress_bar, target_value, step=1, delay=0.01):
 
 def run_analysis():
 
+    selected_files_text.insert(ctk.END, "\nAnalyzing code errors...\n")
+    selected_files_text.update()
+
     progress_bar = ttk.Progressbar(control_frame, orient="horizontal", length=1000, mode="determinate")
     progress_bar.grid(pady=5, padx=200, sticky='nsew', row=1, columnspan=3)
     progress_bar["maximum"] = 100  
@@ -373,6 +382,7 @@ def run_analysis():
         print("No files selected. Exiting.")
         progress_bar.destroy()
         return
+
 
     python_files = filess
 
@@ -565,6 +575,8 @@ def run_analysis():
         for python_file in python_files:
             f.write(feedback_text)
     smooth_increment(progress_bar, 100)
+    selected_files_text.insert(ctk.END, "DONE\n")
+    selected_files_text.update()
     progress_bar.destroy()
     update_gui(feedback_text)
     show_chart()
