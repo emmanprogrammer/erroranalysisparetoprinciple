@@ -21,8 +21,8 @@ import threading
 import time
 
 filess = None
-pyright_path = "pyright"
-pylint_path = "pylint"
+pyright_path = r"C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Scripts\pyright.exe"
+pylint_path = r"C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Scripts\pylint.exe"
 
 def error():
     print("Error function executed")
@@ -364,6 +364,9 @@ def smooth_increment(progress_bar, target_value, step=1, delay=0.01):
 
 def run_analysis():
 
+    selected_files_text.insert(ctk.END, "\nAnalyzing code errors...\n")
+    selected_files_text.update()
+
     progress_bar = ttk.Progressbar(control_frame, orient="horizontal", length=1000, mode="determinate")
     progress_bar.grid(pady=5, padx=200, sticky='nsew', row=1, columnspan=3)
     progress_bar["maximum"] = 100  
@@ -373,6 +376,7 @@ def run_analysis():
         print("No files selected. Exiting.")
         progress_bar.destroy()
         return
+
 
     python_files = filess
 
@@ -403,7 +407,7 @@ def run_analysis():
     "F0401",
 
     "R0201", "R0401", "R0801", "R0901", "R0902", "R0903", "R0904", "R0911",
-    "R0912", "R0913", "R0914", "R0915", "R0921", "R0922", "R0923",
+    "R0912", "R0913", "R0914", "R0915", "R0921", "R0922", "R0923", "R1705",
 
     "W0101", "W0102", "W0104", "W0105", "W0106", "W0107", "W0108", "W0109",
     "W0110", "W0120", "W0121", "W0122", "W0141", "W0142", "W0150", "W0199",
