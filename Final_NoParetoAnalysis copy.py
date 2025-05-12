@@ -27,7 +27,7 @@ pylint_path = "pylint"
 def error():
     print("Error function executed")
     # Define refactor error codes
-    error_error_codes = [ "reportGeneralTypeIssues", "error", "reportFunctionMemberAccess",
+    error_error_codes = [ "reportGeneralTypeIssues", "reportFunctionMemberAccess",
     "reportMissingImports", "reportInvalidTypeForm", "reportAbstractUsage",
     "reportArgumentType", "reportAssertTypeFailure", "reportAssignmentType",
     "reportAttributeAccessIssue", "reportCallIssue", "reportInconsistentOverload",
@@ -332,24 +332,18 @@ def select_files():
     global filess
     file_paths = filedialog.askopenfilenames(title="Select Python Files", filetypes=[("Python Files", "*.py")])
     file_names = [os.path.basename(path) for path in file_paths]  
-    #selected_files_text.insert("end", "\n".join(file_names))
+    selected_files_text.delete("1.0", "end")  
+    selected_files_text.insert("end", "\n".join(file_names))
     filess = list(file_paths)
-    if file_paths:
-        for file in file_paths:
-            if file not in filess:
-                filess.append(file)
-        selected_files_text.insert(ctk.END, "\n".join(file_paths) + "\n")
-        show_selected_files()
-    
+    show_selected_files()
 
 def show_selected_files():
+    selected_files_text.delete(1.0, ctk.END)
     if filess:
         for file in filess:
-            # Check if the file is already in the selected list, if not, add it
-            if file not in selected_files_text.get(1.0, ctk.END):
-                selected_files_text.insert(ctk.END, file + "\n")
+            selected_files_text.insert(ctk.END, file + "\n")
     else:
-        selected_files_text.insert(ctk.END, "No files selected.\n")
+        selected_files_text.insert(ctk.END, "No files selected.")
 
 def smooth_increment(progress_bar, target_value, step=1, delay=0.01):
     """
@@ -370,9 +364,6 @@ def smooth_increment(progress_bar, target_value, step=1, delay=0.01):
 
 def run_analysis():
 
-    selected_files_text.insert(ctk.END, "\nAnalyzing code errors...\n")
-    selected_files_text.update()
-
     progress_bar = ttk.Progressbar(control_frame, orient="horizontal", length=1000, mode="determinate")
     progress_bar.grid(pady=5, padx=200, sticky='nsew', row=1, columnspan=3)
     progress_bar["maximum"] = 100  
@@ -382,7 +373,6 @@ def run_analysis():
         print("No files selected. Exiting.")
         progress_bar.destroy()
         return
-
 
     python_files = filess
 
@@ -426,7 +416,7 @@ def run_analysis():
     "W1300", "W1301", "W1401", "W1402", "W1501",
     ]
 
-    pyright_error_codes = [ "reportGeneralTypeIssues", "error", "reportFunctionMemberAccess",
+    pyright_error_codes = [ "reportGeneralTypeIssues", "reportFunctionMemberAccess",
     "reportMissingImports", "reportInvalidTypeForm", "reportAbstractUsage",
     "reportArgumentType", "reportAssertTypeFailure", "reportAssignmentType",
     "reportAttributeAccessIssue", "reportCallIssue", "reportInconsistentOverload",
@@ -507,7 +497,7 @@ def run_analysis():
         canvas.get_tk_widget().pack(side=ctk.TOP, fill=ctk.BOTH, expand=True)
         
     # Find the top errors contributing to 80% of the issues
-    df_pareto = df[df["cumpercentage"] <= 80]
+    df_pareto = df[df["cumpercentage"] <= 100]
 
     # If the dataframe is empty, use the first row
     if df_pareto.empty:
@@ -557,9 +547,8 @@ def run_analysis():
                                 feedbacks_by_module[module_name] = {}
                             feedbacks_by_module[module_name].update({f"Line : {line_number} [{error_code}] - {error_message}":int(line_number)})
 
-    for module_name in feedbacks_by_module:
-        sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
-        feedbacks_by_module[module_name] = sorted_feedbacks
+    sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
+    feedbacks_by_module[module_name] = sorted_feedbacks
     smooth_increment(progress_bar, progress_bar["value"] + (75 / len(python_files)))
 
 
@@ -576,8 +565,6 @@ def run_analysis():
         for python_file in python_files:
             f.write(feedback_text)
     smooth_increment(progress_bar, 100)
-    selected_files_text.insert(ctk.END, "DONE\n")
-    selected_files_text.update()
     progress_bar.destroy()
     update_gui(feedback_text)
     show_chart()
