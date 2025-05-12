@@ -27,7 +27,7 @@ pylint_path = "pylint"
 def error():
     print("Error function executed")
     # Define refactor error codes
-    error_error_codes = [ "reportGeneralTypeIssues", "reportFunctionMemberAccess",
+    error_error_codes = [ "reportGeneralTypeIssues", "error", "reportFunctionMemberAccess",
     "reportMissingImports", "reportInvalidTypeForm", "reportAbstractUsage",
     "reportArgumentType", "reportAssertTypeFailure", "reportAssignmentType",
     "reportAttributeAccessIssue", "reportCallIssue", "reportInconsistentOverload",
@@ -426,7 +426,7 @@ def run_analysis():
     "W1300", "W1301", "W1401", "W1402", "W1501",
     ]
 
-    pyright_error_codes = [ "reportGeneralTypeIssues", "reportFunctionMemberAccess",
+    pyright_error_codes = [ "reportGeneralTypeIssues", "error", "reportFunctionMemberAccess",
     "reportMissingImports", "reportInvalidTypeForm", "reportAbstractUsage",
     "reportArgumentType", "reportAssertTypeFailure", "reportAssignmentType",
     "reportAttributeAccessIssue", "reportCallIssue", "reportInconsistentOverload",
@@ -557,8 +557,9 @@ def run_analysis():
                                 feedbacks_by_module[module_name] = {}
                             feedbacks_by_module[module_name].update({f"Line : {line_number} [{error_code}] - {error_message}":int(line_number)})
 
-    sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
-    feedbacks_by_module[module_name] = sorted_feedbacks
+    for module_name in feedbacks_by_module:
+        sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
+        feedbacks_by_module[module_name] = sorted_feedbacks
     smooth_increment(progress_bar, progress_bar["value"] + (75 / len(python_files)))
 
 
